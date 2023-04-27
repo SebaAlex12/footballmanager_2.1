@@ -1,0 +1,9 @@
+.login-box{
+    display:flex;
+    justify-content:center;
+}
+
+.login-box .actions{
+    display:flex;
+    justify-content: flex-end;
+}
