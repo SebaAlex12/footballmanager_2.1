@@ -1,22 +1,10 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
-const initialState = {
-    isAuth:false
-};
-
-export const authSlice = createSlice({
-    name:'authentication',
-    initialState,
-    reducers: {
-        login(state){
-            console.log('login reducer');
-            return state
-        }
-    }
-});
+import AuthSlice from './auth-slice';
+import UiSlice from './ui-slice';
 
 const store = configureStore({
-    reducer: authSlice.reducer
+    reducer: { auth:AuthSlice.reducer, ui:UiSlice.reducer }
 });
 
 export default store;

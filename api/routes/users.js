@@ -59,11 +59,12 @@ router.post("/register", (req, res) => {
 // @access Public
 
 router.post("/login", (req, res) => {
+
   const { errors, isValid } = validateLoginInput(req.body);
 
   // Check validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.json({success:false,errors:errors});
   }
 
   const email = req.body.email;
@@ -73,7 +74,7 @@ router.post("/login", (req, res) => {
     // check for user
     if (!user) {
       errors.email = "Użytkownik nie istnieje";
-      return res.status(404).json(errors);
+      return res.json({success:false,errors:errors});
     }
 
     bcrypt.compare(password, user.password).then(isMatch => {
@@ -100,7 +101,7 @@ router.post("/login", (req, res) => {
         );
       } else {
         errors.password = "Hasło jest nieprawidłowe";
-        return res.status(400).json(errors);
+        return res.json({success:false,errors:errors});
       }
     });
   });
@@ -132,7 +133,7 @@ router.get(
     User.findById(req.params.id)
       .then(user => res.json(user))
       .catch(err =>
-        res.status(404).json({ nouserfound: `No user found with id` })
+        res.json({ nouserfound: `No user found with id` })
       );
   }
 );
