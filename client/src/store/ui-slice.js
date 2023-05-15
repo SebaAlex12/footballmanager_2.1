@@ -13,12 +13,10 @@ const UiSlice = createSlice({
     name:'ui',
     initialState,
     reducers: {
-        setNotification(state,action){
+        setNotification: (state,action) => {
 
             // console.log('slice state',state.notification);
             console.log('action',action);
-
-            state.notification.title = 'dupa';
 
             state.notification.title = action.payload.title && action.payload.title.lenght > 0 && action.payload.title;
             state.notification.message = action.payload.message && action.payload.message.lenght > 0 && action.payload.message;

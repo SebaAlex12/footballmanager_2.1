@@ -10,7 +10,7 @@ const AuthSlice = createSlice({
     name:'authentication',
     initialState,
     reducers: {
-        login(state){
+        login: (state) => {
             // console.log('login reducer',current(state));
         }
     }
@@ -38,8 +38,8 @@ export const fetchUserData = (loginData) => {
         console.log('response data',data);
 
         dispatch(uiActions.setNotification({
-            message: '',
-            show: false
+            message: 'Strona załadowana...',
+            show: true
         }));
     }
 } 
