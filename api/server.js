@@ -78,7 +78,7 @@ const importMatchesBlokadaZdjacWRaziePotrzeby = async() => {
       // explode item line
       const elements = item["line"].split(";");
 
-      // there is two hours summer one ouhr winter shifting
+      // there is two hours summer one ouhr winter shiftingg
       const dateFormat = moment(
         `${elements[0]} ${elements[2]}`,
         "YYYY-MM-DD HH:mm:ss"
