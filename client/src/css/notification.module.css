@@ -1,3 +1,21 @@
 .notification-box{
-    
+    background-color: #00a1ff;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+.notification-box.failed{
+    color:red;
+    background-color:#000;
+}
+.notification-messages{
+
+}
+.notification-message{
+
 }

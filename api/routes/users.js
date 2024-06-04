@@ -51,7 +51,7 @@ router.post("/register", (req, res) => {
         });
       });
     }
-  });
+  }).catch(error => { console.log('database error',error) });
 });
 
 // @route GET api/users/login
@@ -104,7 +104,7 @@ router.post("/login", (req, res) => {
         return res.json({success:false,errors:errors});
       }
     });
-  });
+  }).catch(error => { console.log('database error',error) })
 });
 
 // @route GET api/users/current
@@ -132,9 +132,7 @@ router.get(
   (req, res) => {
     User.findById(req.params.id)
       .then(user => res.json(user))
-      .catch(err =>
-        res.json({ nouserfound: `No user found with id` })
-      );
+      .catch(error => { console.log('database error',error) });
   }
 );
 

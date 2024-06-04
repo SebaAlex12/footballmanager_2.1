@@ -1,48 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { uiActions } from './ui-slice';
-
 const initialState = {
-    isAuth:false
+    isAuth:false,
+    token: "",
 };
 
 const AuthSlice = createSlice({
     name:'authentication',
     initialState,
     reducers: {
-        login: (state) => {
-            // console.log('login reducer',current(state));
+        loginUser: (state, action) => {
+            state.isAuth = action.payload.isAuth;
+            state.token = action.payload.token
         }
     }
 });
-
-export const fetchUserData = (loginData) => {
-    return async(dispatch) => {
-
-        dispatch(authActions.login());
-        // console.log('login data',loginData);
-        // dispatch(uiActions.setNotification({
-        //     message: 'Trwa wczytywanie użytkownika...',
-        //     show: true
-        // }));
-
-        const response = await fetch('/api/users/login',{
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-            method:'POST',
-            body: JSON.stringify(loginData)
-        });
-        // const response = await fetch('api/users/test');
-        const data = await response.json();
-        console.log('response data',data);
-
-        dispatch(uiActions.setNotification({
-            message: 'Strona załadowana...',
-            show: true
-        }));
-    }
-} 
 
 export const authActions = AuthSlice.actions;
 

@@ -1,11 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
     notification: {
-        title: '',
-        message: '',
-        status: '',
-        show:false
+        messages: {},
+        status: ''
     }
 };
 
@@ -14,14 +12,9 @@ const UiSlice = createSlice({
     initialState,
     reducers: {
         setNotification: (state,action) => {
-
-            // console.log('slice state',state.notification);
-            console.log('action',action);
-
-            state.notification.title = action.payload.title && action.payload.title.lenght > 0 && action.payload.title;
-            state.notification.message = action.payload.message && action.payload.message.lenght > 0 && action.payload.message;
-            state.notification.show = action.payload.show && action.payload.show.lenght > 0 && action.payload.show;
-            state.notification.status = action.payload.status && action.payload.status.lenght > 0 && action.payload.status;
+            console.log('notification state',current(state));
+            state.notification.messages = action.payload.messages;
+            state.notification.status = action.payload.status;
         }
     }
 });

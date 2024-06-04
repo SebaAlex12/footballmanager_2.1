@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { fetchUserData } from '../store/auth-slice';
+import { checkUserData } from '../store/auth-actions';
 import styles from '../css/login.module.css';
 
 const LoginForm = () => {
@@ -12,14 +12,12 @@ const LoginForm = () => {
 
     const formSubmitHandler = (event) => {
         event.preventDefault();
-        console.log('ref',email.current.value);
-        dispatch(fetchUserData({
+        dispatch(checkUserData({
             email: email.current.value,
             password: password.current.value
         }));
     }
 
-    console.log('login render...');
 
     return (
         <div className={styles['login-box']}>
@@ -30,7 +28,7 @@ const LoginForm = () => {
                 </div>
                 <div className="form-group">
                     <label>Podaj hasło:</label>
-                    <input type="text" ref={password}/>
+                    <input type="password" ref={password}/>
                 </div>
                 <div className={styles.actions}>
                     <button>Wyślij</button>
