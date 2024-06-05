@@ -1,6 +1,28 @@
 .app-box{
-    font-size:15px;
+    font-family:"Open Sans";
+    font-size: 15px;
+    display: block;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+/* top menu */
+
+.menu-box{
+    display:flex;
+    justify-content: end;
+    gap:5px;
+}
+.menu-box a{
+    padding: 10px 15px;
+    background-color: #0089ff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* form */
 
 form{
 

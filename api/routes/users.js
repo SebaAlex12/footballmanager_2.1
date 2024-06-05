@@ -14,17 +14,18 @@ const User = require("../models/User");
 // @route GET api/users/test
 // @desc test users route
 // @access Public
-router.get("/test", (req, res) => res.json({ msg: "users works" }));
+router.get("/test", (req, res) => res.json({success:true,errors:"Połączenie nawiązane"}));
 
-// @route GET api/users/register
+// @route POST api/users/register
 // @desc register user
 // @access Public
 router.post("/register", (req, res) => {
+
   const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.json({success:false,errors:errors});
   }
 
   User.findOne({
@@ -32,7 +33,7 @@ router.post("/register", (req, res) => {
   }).then(user => {
     if (user) {
       errors.email = "Email already exists";
-      return res.status(400).json(errors);
+      return res.json({success:false,errors:errors});
     } else {
       const newUser = new User({
         name: req.body.name,
@@ -46,7 +47,7 @@ router.post("/register", (req, res) => {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(user => res.json({sucess:true,user:user}))
             .catch(err => console.log(err));
         });
       });
@@ -54,7 +55,7 @@ router.post("/register", (req, res) => {
   }).catch(error => { console.log('database error',error) });
 });
 
-// @route GET api/users/login
+// @route POST api/users/login
 // @desc login user returning JTW token
 // @access Public
 
@@ -148,7 +149,7 @@ router.get("/", async(req, res) => {
         return res.json(users);
       }
     }catch(err){
-      return res.status(404).json({ nousersfound: `No users found` });
+      return res.json({ nousersfound: `No users found` });
     }
   }
 );

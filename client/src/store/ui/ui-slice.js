@@ -12,7 +12,6 @@ const UiSlice = createSlice({
     initialState,
     reducers: {
         setNotification: (state,action) => {
-            console.log('notification state',current(state));
             state.notification.messages = action.payload.messages;
             state.notification.status = action.payload.status;
         }

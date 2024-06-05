@@ -13,7 +13,7 @@ const validateMatchInput = require("../validation/match");
 // @route GET api/matches/test
 // @desc test match route
 // @access Public
-router.get("/test", (req, res) => res.json({ msg: "matches works" }));
+router.get("/test", (req, res) => res.json({success:true,errors:"Połączenie nawiązane"}));
 
 // @route GET api/matches/imports
 // @desc test match route
@@ -64,7 +64,7 @@ router.get("/", async(req, res) => {
         sort: { date: "asc" },
     });
     if(matches){
-      return res.json(matches);
+      return res.json({success:true,values:matches});
     }
   }catch(err){
     return res.status(404).json({ nomatchesfound: `No matches found` });

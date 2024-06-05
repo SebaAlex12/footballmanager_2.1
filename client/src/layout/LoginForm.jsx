@@ -1,14 +1,21 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { checkUserData } from '../store/auth-actions';
+import { checkUserData } from '../store/auth/auth-actions';
 import styles from '../css/login.module.css';
 
 const LoginForm = () => {
-    const email = useRef();
-    const password = useRef();
 
     const dispatch = useDispatch();
+    
+    const email = useRef();
+    const password = useRef();
+    const { isAuth, token } = useSelector(state=>state.auth);
+
+    if(isAuth && token.trim().length > 0){
+        localStorage.setItem('jwtToken',token);
+        window.location.href = "/dashboard";
+    }
 
     const formSubmitHandler = (event) => {
         event.preventDefault();
