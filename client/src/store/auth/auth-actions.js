@@ -69,7 +69,7 @@ export const checkUserData = (loginData) => {
                 console.log('data action creator',data);
 
                 if(data.success === true){
-                    dispatch(authActions.loginUser({ isAuth: true, token:data.token }));
+                    dispatch(authActions.loginUser({ isAuth: true, token:data.token, userId:data._id, userName:data.userName }));
                     dispatch(uiActions.setNotification({ messages: {message:'Użytkownik został zalogowany'}, status: 'success' }))
                 }
 
@@ -88,4 +88,4 @@ export const checkUserData = (loginData) => {
             }));         
         }
     }
-} 
+}

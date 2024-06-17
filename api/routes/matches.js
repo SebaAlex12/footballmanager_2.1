@@ -98,19 +98,23 @@ router.get("/current/:id", (req, res) => {
     );
 });
 
-// @route POST api/matches/betting/:id
-// @desc Add betting to match
+// @route POST api/matches/bettings/match/:id
+// @desc Add / Edit betting to match
 // @access Private
 router.post(
-  "/betting/:id",
-  passport.authenticate("jwt", { session: false }),
+  "/bettings/match/:id",
+  // passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // console.log(req.params.id);
+
+    // console.log('set betting params',req.params);
+    // console.log('set betting request',req.body);
+
     Match.findById(req.params.id)
       .then(match => {
         const newBetting = {};
-        newBetting.userId = req.user.id;
-        newBetting.userName = req.user.name;
+        newBetting.userId = req.body.userId;
+        newBetting.userName = req.body.userName;
 
         newBetting.firstTeamFirstHalfGoals =
           req.body.firstTeamFirstHalfGoals === ""
@@ -144,7 +148,7 @@ router.post(
         // });
 
         match.bettings.map(betting => {
-          if (req.user.id == betting.userId) {
+          if (req.body.userId == betting.userId) {
             UserBettingExists = true;
 
             //     console.log("user betting exists");
@@ -168,9 +172,9 @@ router.post(
           match.bettings.unshift(newBetting);
         }
 
-        match.save().then(match => res.json(match));
+        match.save().then(match => res.json({success:true,match:match}));
       })
-      .catch(err => res.status(404).json({ matchnotfound: "match not found" }));
+      .catch(err => res.json({ matchnotfound: "match not found" }));
   }
 );
 

@@ -10,6 +10,10 @@ import RegisterForm from './layout/RegisterForm';
 import styles from './css/basic.module.css';
 
 function App() {
+  const logoutHandler = () => {
+      localStorage.removeItem('jwtToken');
+      window.location.href = '/';
+  }
   return (
     <div className={styles['app-box']}>
       <Notification/>
@@ -17,6 +21,7 @@ function App() {
             <div className={styles["menu-box"]}>
                 <Link to="/register/">Rejestracja</Link>
                 <Link to="/">Logowanie</Link>
+                <button onClick={logoutHandler}>Wyloguj</button>
             </div>
             <Routes className="App" >
                 <Route path="/dashboard/*" element={<Dashboard />} />

@@ -31,3 +31,45 @@ export const fetchMatches = () => {
 
     }
 }
+export const setBettingByMatchId = (bettingData) => {
+    return async dispatch => {
+        const sendRequest = async () => {
+            const request = await fetch(`/api/matches/bettings/match/${bettingData.matchId}`,{
+                headers:{
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+                method:"POST",
+                body:JSON.stringify(bettingData)
+            });
+            
+
+            if(!request.ok){
+                throw new Error('Something went wrong with xhr');
+            }
+
+            const data = await request.json();
+
+            console.log('data action creator',data);
+
+            if(data.success === true){
+                dispatch(uiActions.setNotification({ messages: {message:'Zakład został zapisany'}, status: 'success' }));
+                dispatch(matchesActions.updateMatches(data.match));
+            }
+
+            if(data.success === false){
+                dispatch(uiActions.setNotification({ messages: data.errors, status: 'failed' }))
+            }
+
+        }
+
+        try{
+            await sendRequest();
+        }catch(error){
+            dispatch(uiActions.setNotification({
+                messages: [error],
+                status: 'failed'
+            }));
+        }
+
+    }
+}

@@ -56,8 +56,9 @@ const MatchesStyled = styled.div`
         font-size: 18px;
         table{
             width: 100%;
-            background-color: #000;
+            background-color: #a7a5a5;
             padding: 10px;
+            text-align:center;
             tr:nth-child(2n){
                 background-color:grey;
             }
@@ -65,7 +66,13 @@ const MatchesStyled = styled.div`
                 font-size: 16px;
                 font-weight: 600;
                 max-width: 50px;
-                background-color: #000;
+                background-color: #767676;
+            }
+            .player{
+                width:150px;
+            }
+            .date{
+                width:280px;
             }
         }
         .actions{
@@ -79,12 +86,22 @@ const MatchesStyled = styled.div`
         display:flex;
         gap:5px;
         font-size:20px;
+        color:#5fff5f;
         .teams{
             display:flex;
             gap:5px;            
         }
     }
-    
+    .short-betting-info{
+        display:flex;
+        gap:5px;
+        font-size:20px;
+        color:#000;
+        .teams{
+            display:flex;
+            gap:5px;            
+        }
+    }
 `;
 
 export default MatchesStyled;

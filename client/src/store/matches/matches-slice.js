@@ -9,9 +9,15 @@ const MatchesSlice = createSlice({
     initialState: initialState,
     reducers: {
         addMatches: (state,action) => {
-            console.log('add matches');
-            console.log('matches slice add',action.payload);
             state.matches = action.payload;
+        },
+        updateMatches: (state,action) => {
+            state.matches = state.matches.map(match => {
+                if(match._id === action.payload._id){
+                    match = action.payload;
+                }
+                return match;
+            })
         }
     } 
 });

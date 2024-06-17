@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useNavigate } from 'react-router-dom';
+
 import { checkUserData } from '../store/auth/auth-actions';
 import styles from '../css/login.module.css';
 
@@ -12,9 +14,12 @@ const LoginForm = () => {
     const password = useRef();
     const { isAuth, token } = useSelector(state=>state.auth);
 
+    const navigate = useNavigate();
+
     if(isAuth && token.trim().length > 0){
         localStorage.setItem('jwtToken',token);
-        window.location.href = "/dashboard";
+        console.log('token',token);
+        navigate('/dashboard');
     }
 
     const formSubmitHandler = (event) => {
