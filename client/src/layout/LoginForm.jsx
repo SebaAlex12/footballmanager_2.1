@@ -18,7 +18,6 @@ const LoginForm = () => {
 
     if(isAuth && token.trim().length > 0){
         localStorage.setItem('jwtToken',token);
-        console.log('token',token);
         navigate('/dashboard');
     }
 

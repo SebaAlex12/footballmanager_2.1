@@ -43,11 +43,14 @@ const MatchesItem = ({match}) => {
     // console.log('bettings',bettings);
     // console.log('user id', userId);
     // console.log('my betting',myBetting);
+    // const dateToFormat = '1976-04-19T12:59-0500';
+
+    //format="YYYY/MM/DD day hh:mm"
 
     const matchInfoContent = (
         <div className="match-info-box">
             <header>
-                <div className="match-date"><Moment locale="pl">{ date }</Moment></div>
+                <div className="match-date"><Moment format="YYYY/MM/DD hh:mm">{ date }</Moment></div>
                 <MatchesItemShortInfo match={match} />
                 <div className="actions">
                     <button onClick={() => setToggleResults(prev=>!prev)}>Szczegóły</button>
@@ -58,7 +61,8 @@ const MatchesItem = ({match}) => {
                                 matchId={_id}
                                 firstTeamName={firstTeamName} 
                                 secondTeamName={secondTeamName} 
-                                myBetting={myBetting} 
+                                myBetting={myBetting}
+                                closeHandler={() => setToggleBettingModal(false)} 
                             />
                         </ModalBox> }
                 </div>

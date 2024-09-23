@@ -28,7 +28,6 @@ const Dashboard = () => {
         // store.dispatch(logoutUser());
         window.location.href = "/";
         }else{
-            console.log('decoded',decoded);
             dispatch(authActions.loginUser({ isAuth: true, userId: decoded.id, userName: decoded.name }));
             dispatch(fetchMatches());
         }

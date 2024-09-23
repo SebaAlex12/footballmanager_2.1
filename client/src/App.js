@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
 import { baseUrl } from './utils/ini';
 
@@ -10,6 +11,7 @@ import RegisterForm from './layout/RegisterForm';
 import styles from './css/basic.module.css';
 
 function App() {
+  const { isAuth } = useSelector(state=>state.auth);
   const logoutHandler = () => {
       localStorage.removeItem('jwtToken');
       window.location.href = '/';
@@ -19,9 +21,9 @@ function App() {
       <Notification/>
         <BrowserRouter basename={ baseUrl }>
             <div className={styles["menu-box"]}>
-                <Link to="/register/">Rejestracja</Link>
-                <Link to="/">Logowanie</Link>
-                <button onClick={logoutHandler}>Wyloguj</button>
+                { !isAuth && <Link to="/register/">Rejestracja</Link> }
+                { !isAuth && <Link to="/">Logowanie</Link> }
+                { isAuth && <button onClick={logoutHandler}>Wyloguj</button> }
             </div>
             <Routes className="App" >
                 <Route path="/dashboard/*" element={<Dashboard />} />

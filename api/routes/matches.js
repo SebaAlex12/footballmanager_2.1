@@ -235,7 +235,7 @@ router.post(
 // @access Private
 router.post(
   "/update/:id",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // const { errors, isValid } = validateMatchInput(req.body);
 
@@ -262,7 +262,7 @@ router.post(
 
         match
           .save()
-          .then(match => res.json(match))
+          .then(match => res.json({success:true,match:match}))
           .catch(err =>
             res.status(404).json({ matchdontsave: "match dont save" })
           );

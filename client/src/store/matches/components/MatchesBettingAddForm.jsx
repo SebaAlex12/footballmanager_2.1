@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setBettingByMatchId } from '../matches-actions';
 import MatchesBettingAddFormStyled from '../css/MatchesBettingAddFormStyled';
 
-const MatchesBettingAddForm = ({ firstTeamName, secondTeamName, myBetting, matchId }) => {
+const MatchesBettingAddForm = ({ firstTeamName, secondTeamName, myBetting, matchId, closeHandler }) => {
 
     // console.log('myBetting',myBetting);
 
@@ -35,6 +35,7 @@ const MatchesBettingAddForm = ({ firstTeamName, secondTeamName, myBetting, match
             secondTeamOvertimeGoals
         }
         dispatch(setBettingByMatchId(newBetting));
+        closeHandler();
     }
 
     return(

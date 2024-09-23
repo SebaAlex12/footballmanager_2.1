@@ -18,8 +18,6 @@ export const registerUserData = (registerData) => {
             }
 
             const data = await response.json();
-
-            console.log('data action creator',data);
     
             if(data.success === true){
                 dispatch(uiActions.setNotification({ messages: {message:'Użytkownik został zarejestrowany'}, status: 'success' }))

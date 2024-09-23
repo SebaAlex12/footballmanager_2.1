@@ -63,16 +63,18 @@ const MatchesStyled = styled.div`
                 background-color:grey;
             }
             th{
-                font-size: 16px;
+                font-size: 15px;
                 font-weight: 600;
                 max-width: 50px;
                 background-color: #767676;
+                padding: 10px 0px;
             }
             .player{
-                width:150px;
+                width:200px;
+                max-width:unset;
             }
             .date{
-                width:280px;
+                width:170px;
             }
         }
         .actions{
@@ -83,20 +85,45 @@ const MatchesStyled = styled.div`
         }
     }
     .short-info-results{
-        display:flex;
+        display:flex !important;
         gap:5px;
         font-size:20px;
         color:#5fff5f;
+        align-items: baseline;
         .teams{
             display:flex;
-            gap:5px;            
+            gap:5px;   
+            align-items: baseline;       
+            .football-icon img{
+                max-width:50px;
+                align-items: baseline;
+            }  
+        }
+        form{
+            display:flex;
+            align-items: baseline;
+            input{
+                background-color: #2b6ca5;
+                color: #fff;
+                font-size:20px;
+                width:35px;
+            }
+        }
+        .warnning{
+            background-color: #dd4444;
+            color: #fff;
         }
     }
-    .short-betting-info{
+    .actions{
         display:flex;
-        gap:5px;
-        font-size:20px;
-        color:#000;
+        align-items: center;
+    }
+    .short-betting-info{
+        display: flex;
+        gap: 5px;
+        font-size: 19px;
+        color: #000;
+        font-weight: 600;
         .teams{
             display:flex;
             gap:5px;            

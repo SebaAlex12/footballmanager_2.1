@@ -7,18 +7,17 @@ const MatchesBettingsList = ({firstTeamName, secondTeamName, bettings}) => {
     const { userId } = useSelector(state => state.auth);
 
     const myBetting = bettings.find(betting => betting.userId === userId);
-    console.log('myBetting',myBetting);
 
     const shortBettingInfo = (
-        <div class="short-betting-info">
-            <div class="teams">
-                <div class="team">{ firstTeamName }</div>
+        <div className="short-betting-info">
+            <div className="teams">
+                <div className="team">{ firstTeamName }</div>
                 <div> : </div>
-                <div class="team">{ secondTeamName }</div>
+                <div className="team">{ secondTeamName }</div>
             </div>
-            <div class="result">I[ { myBetting.firstTeamFirstHalfGoals } : { myBetting.secondTeamFirstHalfGoals } ]</div>
-            <div class="result">II[ { myBetting.firstTeamSecondHalfGoals } : { myBetting.secondTeamSecondHalfGoals } ]</div>
-            <div class="result">III[ { myBetting.firstTeamOvertimeGoals } : { myBetting.secondTeamOvertimeGoals } ]</div>
+            <div className="result">I[ { myBetting.firstTeamFirstHalfGoals } : { myBetting.secondTeamFirstHalfGoals } ]</div>
+            <div className="result">II[ { myBetting.firstTeamSecondHalfGoals } : { myBetting.secondTeamSecondHalfGoals } ]</div>
+            <div className="result">III[ { myBetting.firstTeamOvertimeGoals } : { myBetting.secondTeamOvertimeGoals } ]</div>
         </div>
     )
 
@@ -26,7 +25,7 @@ const MatchesBettingsList = ({firstTeamName, secondTeamName, bettings}) => {
         <div className="bettings-box">
             <div className="actions">
                 <div className="your-betting">Obstawiłeś: { shortBettingInfo }</div>
-                <div>Zakłady:</div><button onClick={() => setToggle(prev => !prev)}>Pokaż / ukryj</button>
+                <button onClick={() => setToggle(prev => !prev)}>Zakłady</button>
             </div>
             { toggle &&
                 <table>
@@ -47,7 +46,7 @@ const MatchesBettingsList = ({firstTeamName, secondTeamName, bettings}) => {
                             <tbody key={betting._id}>
                                 <tr>
                                         <td className="user-name">{ betting.userName }</td>
-                                        <td className="date"><Moment locale="pl">{ betting.date }</Moment></td>
+                                        <td className="date"><Moment format="YYYY/MM/DD hh:mm">{ betting.date }</Moment></td>
                                         <td className="col">{ betting.firstTeamFirstHalfGoals }</td>
                                         <td className="col">{ betting.secondTeamFirstHalfGoals }</td>
                                         <td className="col">{ betting.firstTeamSecondHalfGoals }</td>
