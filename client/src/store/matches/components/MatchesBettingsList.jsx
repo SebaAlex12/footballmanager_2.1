@@ -15,9 +15,9 @@ const MatchesBettingsList = ({firstTeamName, secondTeamName, bettings}) => {
                 <div> : </div>
                 <div className="team">{ secondTeamName }</div>
             </div>
-            <div className="result">I[ { myBetting.firstTeamFirstHalfGoals } : { myBetting.secondTeamFirstHalfGoals } ]</div>
-            <div className="result">II[ { myBetting.firstTeamSecondHalfGoals } : { myBetting.secondTeamSecondHalfGoals } ]</div>
-            <div className="result">III[ { myBetting.firstTeamOvertimeGoals } : { myBetting.secondTeamOvertimeGoals } ]</div>
+            <div className="result">I[ { myBetting && myBetting.firstTeamFirstHalfGoals } : { myBetting && myBetting.secondTeamFirstHalfGoals } ]</div>
+            <div className="result">II[ { myBetting && myBetting.firstTeamSecondHalfGoals } : { myBetting && myBetting.secondTeamSecondHalfGoals } ]</div>
+            <div className="result">III[ { myBetting && myBetting.firstTeamOvertimeGoals } : { myBetting && myBetting.secondTeamOvertimeGoals } ]</div>
         </div>
     )
 
