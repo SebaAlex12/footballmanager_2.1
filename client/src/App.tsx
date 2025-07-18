@@ -11,7 +11,9 @@ import RegisterForm from './layout/RegisterForm';
 import styles from './css/basic.module.css';
 
 function App() {
-  const { isAuth } = useSelector(state=>state.auth);
+  
+  const { isAuth } = useSelector((state:any) => state.auth);
+
   const logoutHandler = () => {
       localStorage.removeItem('jwtToken');
       window.location.href = '/';
@@ -25,7 +27,7 @@ function App() {
                 { !isAuth && <Link to="/">Logowanie</Link> }
                 { isAuth && <button onClick={logoutHandler}>Wyloguj</button> }
             </div>
-            <Routes className="App" >
+            <Routes>
                 <Route path="/dashboard/*" element={<Dashboard />} />
                 <Route path="/register/" element={<RegisterForm />} />
                 <Route path="/" element={<LoginForm />} />
